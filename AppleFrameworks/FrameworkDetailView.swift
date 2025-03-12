@@ -10,6 +10,7 @@ import SwiftUI
 struct FrameworkDetailView: View {
     let framework: Framework
     @Binding var isShowingDetail: Bool
+    @Environment(\.openURL) var openURL  // 🔹 Use SwiftUI's built-in openURL
 
     var body: some View {
         VStack(spacing: 20) {
@@ -45,10 +46,10 @@ struct FrameworkDetailView: View {
             
             Spacer()
             
-            // Learn More Button
+            // Learn More Button - Opens Safari
             Button(action: {
                 if let url = URL(string: framework.urlString) {
-                    UIApplication.shared.open(url)
+                    openURL(url)  // ✅ Uses SwiftUI's openURL function
                 }
             }) {
                 Text("Learn More")
@@ -58,7 +59,7 @@ struct FrameworkDetailView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-            .padding(.bottom, 20)  // Ensures it's at the bottom
+            .padding(.bottom, 20)
         }
         .padding()
     }
