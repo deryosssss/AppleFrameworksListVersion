@@ -11,20 +11,12 @@ struct FrameworkDetailView: View {
     let framework: Framework
     @Binding var isShowingDetail: Bool
     @Environment(\.openURL) var openURL  // 🔹 Use SwiftUI's built-in openURL
-
+    
     var body: some View {
         VStack(spacing: 20) {
             // Close Button (X) at the Top Right
             HStack {
                 Spacer()
-                Button(action: {
-                    isShowingDetail = false
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.gray)
-                }
                 .padding()
             }
             
@@ -64,6 +56,7 @@ struct FrameworkDetailView: View {
         .padding()
     }
 }
+
 
 #Preview {
     FrameworkDetailView(framework: MockData.sampleFramework, isShowingDetail: .constant(true))
